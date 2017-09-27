@@ -138,21 +138,22 @@ define(['jquery', 'settings', 'apiService', 'utils'], function($, config, apiSer
 			e.preventDefault();
 		});    
 
-		// 	// airling boarding pass
-		// 	$(document).on('click', '.caroselresponsepayload', function (e) {
-		// 	var payloadInput = $(this).data().carouselpayloadbutton;
-		// 	console.log('Button Payload'+ payloadInput);
-		// 	processor.askBot(payloadInput, function (error, html) {
-		// 		if (error) {
-		// 			console.log("error occured while processing your Request") //change into some inline fancy display, show error in chat window.
-		// 		}
-		// 		if (html) {
-		// 			msg_container.append(html);
+			// airling boarding pass
+			$(document).on('click', '.airlineBoardingButton', function (e) {
+			//var payloadInput = $(this).data().airlineBoardingButton;
+            var payloadInput = "Airline";
+			console.log('Button Payload'+ payloadInput);
+			processor.askBot(payloadInput, function (error, html) {
+				if (error) {
+					console.log("error occured while processing your Request") //change into some inline fancy display, show error in chat window.
+				}
+				if (html) {
+					msg_container.append(html);
 
-		// 		}
-		// 	});
-		// 	e.preventDefault();
-		// });   
+				}
+			});
+			e.preventDefault();
+		});   
 
 
     });

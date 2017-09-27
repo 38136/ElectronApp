@@ -1,0 +1,96 @@
+<div class="pmd-card pmd-card-inverseblue pmd-z-depth">
+    <!-- Card header -->
+    <div class="container">
+        <div class="row airlinePadding">
+            <div class="col-xs-6">
+                <a href="javascript:void(0);" class="avatar-list-img">
+            <img width="40" height="40" src="https://previews.123rf.com/images/sn333g/sn333g1504/sn333g150400033/39063712-Avi-n-icono-de-vuelo-o-avi-n-logo-despegue-vector-s-mbolo-azul-Foto-de-archivo.jpg">
+        </a>
+            </div>
+            <div class="col-xs-3">
+                <h3 class="pmd-card-title-text">${termialLabel}</h3>
+                <span class="pmd-card-subtitle-text">${termialValue}</span>
+            </div>
+            <div class="col-xs-3">
+                <h3 class="pmd-card-title-text">${gateLabel}</h3>
+                <span class="pmd-card-subtitle-text">${gateValue}</span>
+            </div>
+        </div>
+        <hr style="margin:0px">
+        <div class="row airlinePadding">
+            <div class="col-xs-9">
+                <h3 class="pmd-card-title-text">Passenger</h3>
+            </div>
+            <div class="col-xs-3">
+                <h3 class="pmd-card-title-text">${passengersSeatLabel}</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-9">
+                <span class="pmd-card-subtitle-text">${arrName}</span>
+            </div>
+            <div class="col-xs-3">
+                <span class="pmd-card-subtitle-text">${passengersSeatValue}</span>
+            </div>
+        </div>
+        <hr style="margin:0px">
+        <div class="row airlinePadding ">
+            <div class="col-xs-4">
+                <h3 class="pmd-card-title-text">Flight</h3>
+            </div>
+            <div class="col-xs-4">
+                <h3 class="pmd-card-title-text">Boards</h3>
+            </div>
+            <div class="col-xs-4">
+                <h3 class="pmd-card-title-text">Departs</h3>
+            </div>
+        </div>
+        <div class="row  ">
+            <div class="col-xs-4">
+                <span class="pmd-card-subtitle-text">${flightNumber}</span>
+            </div>
+            <div class="col-xs-4">
+                <span class="pmd-card-subtitle-text">${boardingValue}</span>
+            </div>
+            <div class="col-xs-4">
+                <span class="pmd-card-subtitle-text">${departsValue}</span>
+            </div>
+        </div>
+        <div class="row airlinePadding">
+            <div class="col-xs-9">
+                <h3 class="pmd-card-title-text">${arrivalCity}</h3>
+            </div>
+            <div class="col-xs-3">
+                <h3 class="pmd-card-title-text">${departCity}</h3>
+            </div>
+        </div>
+        <div class="row  ">
+            <div class="col-xs-5">
+                <h2 class="pmd-display2" style="margin:0">${arrivalCode}</h2>
+            </div>
+            <div class="col-xs-4">
+                <i class="material-icons pmd-lg">flight</i>
+            </div>
+            <div class="col-xs-3">
+                <h2 class="pmd-display2" style="margin:0">${departCode}</h2>
+            </div>
+        </div>
+    </div>
+
+
+    if (data.buttons && data.payload[i].type == 1) { for (var j = 0; j< data.payload[i].buttons.length; j++) { carousel
+        +=` <button type="button" class="btn btn-primary btn pmd-btn-outline caroselresponsepayload" data-carouselpayloadButton="${data.payload[i].buttons[j].postback}">${data.payload[i].buttons[j].text}</button>` } }
+
+
+        <div class="pmd-card-actions col-xs-12" style="text-align:center">
+            <button class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button">View Boarding Pass</button>
+        </div>
+</div>
+
+
+
+
+    <div class="pmd-card-actions col-xs-12" style="text-align:center">
+         //<button class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button">View Boarding Pass</button>
+         <button type="button" class="btn btn-primary btn pmd-btn-outline airlineBoardingButton" data = "${data.payload[i].buttons[j].postback}" >${data.payload[i].buttons[j].text}</button>
+     </div>

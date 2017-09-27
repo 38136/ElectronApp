@@ -36,9 +36,8 @@ define(['messageTemplates', 'uuid'], function(messageTpl, uuidv1){
             }
 
             // airlines intergration of Airline boarding pass template
-            if(this.responseType =="airline_boardingpass"){
-                console.log(JSON.stringify(this.data));
-                return messageTpl.airline_boardingpass(this.data);
+            if(this.responseType =="airlineBoarding"){
+                return messageTpl.airlineBoarding(this.data);
             }
             // --------------------------------
         }

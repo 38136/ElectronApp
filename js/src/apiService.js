@@ -59,8 +59,6 @@ define(['jquery', 'settings', 'utils', 'messageTemplates', 'cards', 'uuid'],
 							// console.log("for airline service"+ response);
 
 							for (let i in response.result.fulfillment.messages) {
-									debugger;									
-								
 								if (response.result.fulfillment.messages[i].type == 0) {
 									let cardHTML = cards({
 										"payload": response.result.fulfillment.messages[i].speech,
@@ -82,19 +80,20 @@ define(['jquery', 'settings', 'utils', 'messageTemplates', 'cards', 'uuid'],
 								if (response.result.fulfillment.messages[i].type == 3) {
 									isImage = true;
 								}
-								if (response.result.fulfillment.messages[i].type == 4) {
-									console.log(response.result.fulfillment.messages[i])
-									isQuickReply = (response.result.fulfillment.messages[i].payload.facebook.quick_replies.length > 0) ? true : false;
-									console.log(isQuickReply);
-								}
+								// if (response.result.fulfillment.messages[i].type == 4) {
+								// 	console.log(response.result.fulfillment.messages[i])
+								// 	isQuickReply = (response.result.fulfillment.messages[i].payload.facebook.quick_replies.length > 0) ? true : false;
+								// 	console.log(isQuickReply);
+								// }
 								// airline
-								if ((response.result.fulfillment.messages[i].type == 4) && (response.result.fulfillment.messages[i].payload.facebook.attachment.payload.message.attachment.payload.template_type ==='airline_boardingpass')) {
-									console.log(response.result.fulfillment.messages[i]);
-									
-									debugger;									
-									// isAirlineBoardingPass = (response.result.fulfillment.messages[i].payload.facebook.attachment.payload.message.attachment.payload.boarding_pass.length > 0) ? true : false;
-									isAirlineBoardingPass = (response.result.fulfillment.messages[i].payload.facebook.attachment.payload.message.attachment.payload.boarding_pass.length > 0) ? true : false;
-									console.log("this is true or false" + isAirlineBoardingPass);
+								if (response.result.fulfillment.messages[i].type == 4) {
+									// if (response.result.fulfillment.messages[i].payload.facebook.attachment.payload.message.attachment.payload.template_type ==='airline_boardingpass') {
+									if ((response.result.fulfillment.messages[i].payload.facebook.attachment.payload.message.attachment.payload.template_type === 'airline_boardingpass')) {
+										console.log(response.result.fulfillment.messages[i].payload.facebook.attachment.payload.message.attachment.payload.template_type);
+										// isAirlineBoardingPass = (response.result.fulfillment.messages[i].payload.facebook.attachment.payload.message.attachment.payload.boarding_pass.length > 0) ? true : false;
+										isAirlineBoardingPass = (response.result.fulfillment.messages[i].payload.facebook.attachment.payload.message.attachment.payload.boarding_pass.length > 0) ? true : false;
+										console.log(isAirlineBoardingPass);
+									}
 
 								}
 
@@ -156,6 +155,20 @@ define(['jquery', 'settings', 'utils', 'messageTemplates', 'cards', 'uuid'],
 							let cardHTML = cards(response.result.fulfillment.messages, "quickreplyfromapiai");
 							callback(null, cardHTML);
 						}
+						// airline Boarding
+						if (isAirlineBoardingPass) {
+								let boardingPassHTML = cards({
+									"payload": response.result.fulfillment.messages,
+									"senderName": config.botTitle,
+									"senderAvatar": config.botAvatar,
+									"time": utils.currentTime(),
+									"buttons": hasbutton,
+									"className": ''
+								}, "airlineBoarding");
+								callback(null, boardingPassHTML);
+							// }
+						}
+						// -----------------------------------
 					},
 					error: function () {
 						callback("Internal Server Error", null);
