@@ -92,7 +92,7 @@ define(['jquery', 'settings', 'utils', 'messageTemplates', 'cards', 'uuid'],
 								// airline
 								if (response.result.fulfillment.messages[i].type == 4) {
 									// if (response.result.fulfillment.messages[i].payload.facebook.attachment.payload.message.attachment.payload.template_type ==='airline_boardingpass') {
-									if ((response.result.fulfillment.messages[i].payload.facebook.attachment.payload.message.attachment.payload.template_type === 'airline_boardingpass')) {
+									if ((response.result.fulfillment.messages[i].payload.facebook.attachment.payload.message.attachment.payload.template_type === 'airline_boardingpass' && response.result.metadata.intentName === 'AirlineIntent')) {
 										console.log(response.result.fulfillment.messages[i].payload.facebook.attachment.payload.message.attachment.payload.template_type);
 										// isAirlineBoardingPass = (response.result.fulfillment.messages[i].payload.facebook.attachment.payload.message.attachment.payload.boarding_pass.length > 0) ? true : false;
 										isAirlineBoardingPass = (response.result.fulfillment.messages[i].payload.facebook.attachment.payload.message.attachment.payload.boarding_pass.length > 0) ? true : false;

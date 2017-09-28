@@ -4,59 +4,34 @@
         <div class="row airlinePadding">
             <div class="col-xs-6">
                 <a href="javascript:void(0);" class="avatar-list-img">
-            <img width="40" height="40" src="https://previews.123rf.com/images/sn333g/sn333g1504/sn333g150400033/39063712-Avi-n-icono-de-vuelo-o-avi-n-logo-despegue-vector-s-mbolo-azul-Foto-de-archivo.jpg">
+            <img width="40" height="40" src="${logoUrl}">
         </a>
             </div>
-            <div class="col-xs-3">
-                <h3 class="pmd-card-title-text">${termialLabel}</h3>
-                <span class="pmd-card-subtitle-text">${termialValue}</span>
-            </div>
-            <div class="col-xs-3">
-                <h3 class="pmd-card-title-text">${gateLabel}</h3>
-                <span class="pmd-card-subtitle-text">${gateValue}</span>
+            <div class="col-xs-4">
+
             </div>
         </div>
-        <hr style="margin:0px">
         <div class="row airlinePadding">
             <div class="col-xs-9">
                 <h3 class="pmd-card-title-text">Passenger</h3>
             </div>
             <div class="col-xs-3">
-                <h3 class="pmd-card-title-text">${passengersSeatLabel}</h3>
+                <h3 class="pmd-card-title-text">Departure</h3>
+
             </div>
+
         </div>
         <div class="row">
             <div class="col-xs-9">
                 <span class="pmd-card-subtitle-text">${arrName}</span>
             </div>
             <div class="col-xs-3">
-                <span class="pmd-card-subtitle-text">${passengersSeatValue}</span>
-            </div>
-        </div>
-        <hr style="margin:0px">
-        <div class="row airlinePadding ">
-            <div class="col-xs-4">
-                <h3 class="pmd-card-title-text">Flight</h3>
-            </div>
-            <div class="col-xs-4">
-                <h3 class="pmd-card-title-text">Boards</h3>
-            </div>
-            <div class="col-xs-4">
-                <h3 class="pmd-card-title-text">Departs</h3>
-            </div>
-        </div>
-        <div class="row  ">
-            <div class="col-xs-4">
-                <span class="pmd-card-subtitle-text">${flightNumber}</span>
-            </div>
-            <div class="col-xs-4">
-                <span class="pmd-card-subtitle-text">${boardingValue}</span>
-            </div>
-            <div class="col-xs-4">
                 <span class="pmd-card-subtitle-text">${departsValue}</span>
             </div>
+
         </div>
-          <div class="row airlinePadding">
+        <hr style="margin:0px">
+        <div class="row airlinePadding">
             <div class="col-xs-9">
                 <h3 class="pmd-card-title-text">${arrivalCity}</h3>
             </div>
@@ -75,10 +50,95 @@
                 <h2 class="pmd-display2" style="margin:0">${departCode}</h2>
             </div>
         </div>
+        <div class="row airlinePadding ">
+            <div class="col-xs-3">
+                <h3 class="pmd-card-title-text">Flight</h3>
+            </div>
+            <div class="col-xs-3">
+                <h3 class="pmd-card-title-text">${termialLabel}</h3>
+            </div>
+            <div class="col-xs-3">
+                <h3 class="pmd-card-title-text">Boarding</h3>
+            </div>
+            <div class="col-xs-3">
+                <h3 class="pmd-card-title-text">${gateLabel}</h3>
+            </div>
+
+
+
+        </div>
+        <div class="row  ">
+            <div class="col-xs-3">
+                <span class="pmd-card-subtitle-text">${flightNumber}</span>
+            </div>
+            <div class="col-xs-3">
+                <span class="pmd-card-subtitle-text">${termialValue}</span>
+
+            </div>
+            <div class="col-xs-3">
+                <span class="pmd-card-subtitle-text">${boardingValue}</span>
+            </div>
+
+            <div class="col-xs-3">
+                <span class="pmd-card-subtitle-text">${gateValue}</span>
+
+            </div>
+
+        </div>
+        <div class="row airlinePadding ">
+            <div class="col-xs-3">
+                <h3 class="pmd-card-title-text">Zone</h3>
+            </div>
+            <div class="col-xs-3">
+                <h3 class="pmd-card-title-text">Gate Closing</h3>
+            </div>
+            <div class="col-xs-3">
+                <h3 class="pmd-card-title-text">Seat</h3>
+            </div>
+            <div class="col-xs-3">
+                <h3 class="pmd-card-title-text">Sec</h3>
+            </div>
+
+
+
+        </div>
+        <div class="row  ">
+            <div class="col-xs-3">
+                <span class="pmd-card-subtitle-text">${flightNumber}</span>
+            </div>
+            <div class="col-xs-3">
+                <span class="pmd-card-subtitle-text">${boardingValue}</span>
+            </div>
+            <div class="col-xs-3">
+                <span class="pmd-card-subtitle-text">${passengersSeatValue}</span>
+            </div>
+            <div class="col-xs-3">
+                <span class="pmd-card-subtitle-text">${gateValue}</span>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+<button type="button" class="btn pmd-btn-raised pmd-ripple-effect btn-info">Info</button>
+
+            <div class="pmd-card-actions">
+                <button class="btn btn-sm pmd-btn-flat pmd-ripple-effect btn-info " type="button">Gold Status</button>
+            </div>
+            <div class="pmd-card-media">
+                <img width="152" height="152" class="img-responsive" src=${barcodeUrl}>
+            </div>
+        </div>
+
+
     </div>
-<div class="pmd-card-actions col-xs-12 " style="text-align:center">
-            <button class="btn pmd-btn-flat pmd-ripple-effect btn-primary type="button">Share</button>
+    <hr style="margin:0px">
+    <div class="pmd-card-actions col-xs-12 " style="text-align:center">
+        <button class="btn pmd-btn-flat pmd-ripple-effect btn-primary type=" button ">Share</button>
+        <hr style="margin:0px ">
             <button class="btn pmd-btn-flat pmd-ripple-effect btn-primary type="button">Message Airline</button>
-            <button class="btn pmd-btn-flat pmd-ripple-effect btn-primary type="button">Add to Passbook</button>
+        <hr style="margin:0px">
+        <button class="btn pmd-btn-flat pmd-ripple-effect btn-primary type=" button ">Add to Passbook</button>
         </div>
 </div>
