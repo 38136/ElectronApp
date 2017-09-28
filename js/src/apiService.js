@@ -51,6 +51,10 @@ define(['jquery', 'settings', 'utils', 'messageTemplates', 'cards', 'uuid'],
 
 						// airline onboarding
 						let isAirlineBoardingPass = false;
+						let isViewBoardingPassBarCode = false;
+						let isAirlineCheckin = false;
+						let isAirlingFlightUpdate = false;
+
 						//To find Card || Carousel
 						let count = 0;
 						let hasbutton;
@@ -94,8 +98,29 @@ define(['jquery', 'settings', 'utils', 'messageTemplates', 'cards', 'uuid'],
 										isAirlineBoardingPass = (response.result.fulfillment.messages[i].payload.facebook.attachment.payload.message.attachment.payload.boarding_pass.length > 0) ? true : false;
 										console.log(isAirlineBoardingPass);
 									}
+									// View boarding Pass with barcode
+									if ((response.result.metadata.intentName === 'AirLineWith_Barcode')) {
+										console.log(response.result.fulfillment.messages[i].payload.facebook.attachment.payload.message.attachment.payload.template_type);
+										// isAirlineBoardingPass = (response.result.fulfillment.messages[i].payload.facebook.attachment.payload.message.attachment.payload.boarding_pass.length > 0) ? true : false;
+										isViewBoardingPassBarCode = (response.result.fulfillment.messages[i].payload.facebook.attachment.payload.message.attachment.payload.boarding_pass.length > 0) ? true : false;
+										console.log(isViewBoardingPassBarCode);
+									}
+									//Airline checkin template
+									if ((response.result.fulfillment.messages[i].payload.facebook.attachment.payload.message.attachment.payload.template_type === 'airline_checkin')) {
+										console.log(response.result.fulfillment.messages[i].payload.facebook.attachment.payload.message.attachment.payload.template_type);
+										isAirlineCheckin = (response.result.fulfillment.messages[i].payload.facebook.attachment.payload.message.attachment.payload.flight_info.length > 0) ? true : false;
+										console.log(isAirlineCheckin);
+									}
+									//Airline flight update template
+									if ((response.result.fulfillment.messages[i].payload.facebook.attachment.payload.message.attachment.payload.template_type === 'airline_update')) {
+										console.log(response.result.fulfillment.messages[i].payload.facebook.attachment.payload.message.attachment.payload.template_type);
+										// isAirlingFlightUpdate = response.result.fulfillment.messages[i].payload.facebook.attachment.payload.message.attachment.payload.update_flight_info;
+										isAirlingFlightUpdate = true;
+										console.log(isAirlingFlightUpdate);
+									}
 
 								}
+
 
 							}
 						} else {
@@ -155,20 +180,57 @@ define(['jquery', 'settings', 'utils', 'messageTemplates', 'cards', 'uuid'],
 							let cardHTML = cards(response.result.fulfillment.messages, "quickreplyfromapiai");
 							callback(null, cardHTML);
 						}
-						// airline Boarding
+						// airline Boarding Pass
 						if (isAirlineBoardingPass) {
-								let boardingPassHTML = cards({
-									"payload": response.result.fulfillment.messages,
-									"senderName": config.botTitle,
-									"senderAvatar": config.botAvatar,
-									"time": utils.currentTime(),
-									"buttons": hasbutton,
-									"className": ''
-								}, "airlineBoarding");
-								callback(null, boardingPassHTML);
-							// }
+							let boardingPassHTML = cards({
+								"payload": response.result.fulfillment.messages,
+								"senderName": config.botTitle,
+								"senderAvatar": config.botAvatar,
+								"time": utils.currentTime(),
+								"buttons": hasbutton,
+								"className": ''
+							}, "airlineBoarding");
+							callback(null, boardingPassHTML);
 						}
 						// -----------------------------------
+
+						// airline Boarding Pass View bar code
+						if (isViewBoardingPassBarCode) {
+							let ViewBoardingPassBarCodeHTML = cards({
+								"payload": response.result.fulfillment.messages,
+								"senderName": config.botTitle,
+								"senderAvatar": config.botAvatar,
+								"time": utils.currentTime(),
+								"buttons": hasbutton,
+								"className": ''
+							}, "ViewBoardingPassBarCode");
+							callback(null, ViewBoardingPassBarCodeHTML);
+						}
+						// airline Checkin
+						if (isAirlineCheckin) {
+							let CheckinHTML = cards({
+								"payload": response.result.fulfillment.messages,
+								"senderName": config.botTitle,
+								"senderAvatar": config.botAvatar,
+								"time": utils.currentTime(),
+								"buttons": hasbutton,
+								"className": ''
+							}, "airlineCheckin");
+							callback(null, CheckinHTML);
+						}
+
+						// airline flight update
+						if (isAirlingFlightUpdate) {
+							let CheckinHTML = cards({
+								"payload": response.result.fulfillment.messages,
+								"senderName": config.botTitle,
+								"senderAvatar": config.botAvatar,
+								"time": utils.currentTime(),
+								"buttons": hasbutton,
+								"className": ''
+							}, "airlineFlightUpdate");
+							callback(null, CheckinHTML);
+						}
 					},
 					error: function () {
 						callback("Internal Server Error", null);

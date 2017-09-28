@@ -56,7 +56,7 @@
                 <span class="pmd-card-subtitle-text">${departsValue}</span>
             </div>
         </div>
-        <div class="row airlinePadding">
+          <div class="row airlinePadding">
             <div class="col-xs-9">
                 <h3 class="pmd-card-title-text">${arrivalCity}</h3>
             </div>
@@ -76,21 +76,9 @@
             </div>
         </div>
     </div>
-
-
-    if (data.buttons && data.payload[i].type == 1) { for (var j = 0; j< data.payload[i].buttons.length; j++) { carousel
-        +=` <button type="button" class="btn btn-primary btn pmd-btn-outline caroselresponsepayload" data-carouselpayloadButton="${data.payload[i].buttons[j].postback}">${data.payload[i].buttons[j].text}</button>` } }
-
-
-        <div class="pmd-card-actions col-xs-12" style="text-align:center">
-            <button class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button">View Boarding Pass</button>
+<div class="pmd-card-actions col-xs-12 " style="text-align:center">
+            <button class="btn pmd-btn-flat pmd-ripple-effect btn-primary type="button">Share</button>
+            <button class="btn pmd-btn-flat pmd-ripple-effect btn-primary type="button">Message Airline</button>
+            <button class="btn pmd-btn-flat pmd-ripple-effect btn-primary type="button">Add to Passbook</button>
         </div>
 </div>
-
-
-
-
-    <div class="pmd-card-actions col-xs-12" style="text-align:center">
-         //<button class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button">View Boarding Pass</button>
-         <button type="button" class="btn btn-primary btn pmd-btn-outline airlineBoardingButton" data = "${data.payload[i].buttons[j].postback}" >${data.payload[i].buttons[j].text}</button>
-     </div>

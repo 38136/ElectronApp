@@ -160,24 +160,24 @@ define([], function () {
                 for (let j in data.payload[i].payload.facebook.attachment.payload.message.attachment.payload.boarding_pass) {
                     debugger;
 
-                    console.log(data.payload[i].payload.facebook.attachment.payload.message.attachment.payload.boarding_pass[j]);
-                    let termialLabel = data.payload[i].payload.facebook.attachment.payload.message.attachment.payload.boarding_pass[j].auxiliary_fields[0].label;
-                    let termialValue = data.payload[i].payload.facebook.attachment.payload.message.attachment.payload.boarding_pass[j].auxiliary_fields[0].value;
-                    let gateLabel = data.payload[i].payload.facebook.attachment.payload.message.attachment.payload.boarding_pass[j].secondary_fields[1].label;
-                    let gateValue = data.payload[i].payload.facebook.attachment.payload.message.attachment.payload.boarding_pass[j].secondary_fields[1].value;
-                    let passengersName = data.payload[i].payload.facebook.attachment.payload.message.attachment.payload.boarding_pass[j].passenger_name;
-                    let passengersSeatLabel = data.payload[i].payload.facebook.attachment.payload.message.attachment.payload.boarding_pass[j].secondary_fields[2].label;
-                    let passengersSeatValue = data.payload[i].payload.facebook.attachment.payload.message.attachment.payload.boarding_pass[j].secondary_fields[2].value;
-                    let flightNumber = data.payload[i].payload.facebook.attachment.payload.message.attachment.payload.boarding_pass[j].flight_info.flight_number;
-                    let boardingValue = data.payload[i].payload.facebook.attachment.payload.message.attachment.payload.boarding_pass[j].secondary_fields[0].value;
-                    let departsValue = data.payload[i].payload.facebook.attachment.payload.message.attachment.payload.boarding_pass[j].flight_info.flight_schedule.departure_time;
-                    let departCity = data.payload[i].payload.facebook.attachment.payload.message.attachment.payload.boarding_pass[j].flight_info.departure_airport.city;
-                    let departCode = data.payload[i].payload.facebook.attachment.payload.message.attachment.payload.boarding_pass[j].flight_info.departure_airport.airport_code;
-                    let arrivalCity = data.payload[i].payload.facebook.attachment.payload.message.attachment.payload.boarding_pass[j].flight_info.arrival_airport.city;
-                    let arrivalCode = data.payload[i].payload.facebook.attachment.payload.message.attachment.payload.boarding_pass[j].flight_info.arrival_airport.airport_code;
-                    
+                    let params = data.payload[i].payload.facebook.attachment.payload.message.attachment.payload.boarding_pass[j];
+                    let termialLabel = params.auxiliary_fields[0].label;
+                    let termialValue = params.auxiliary_fields[0].value;
+                    let gateLabel = params.secondary_fields[1].label;
+                    let gateValue = params.secondary_fields[1].value;
+                    let passengersName = params.passenger_name;
+                    let passengersSeatLabel = params.secondary_fields[2].label;
+                    let passengersSeatValue = params.secondary_fields[2].value;
+                    let flightNumber = params.flight_info.flight_number;
+                    let boardingValue = params.secondary_fields[0].value;
+                    let departsValue = params.flight_info.flight_schedule.departure_time;
+                    let departCity = params.flight_info.departure_airport.city;
+                    let departCode = params.flight_info.departure_airport.airport_code;
+                    let arrivalCity = params.flight_info.arrival_airport.city;
+                    let arrivalCode = params.flight_info.arrival_airport.airport_code;
+
                     let arrName = passengersName.replace('/', ' ');
-                  
+
                     let departTime = departsValue.slice('T');
                     console.log(departTime);
 
@@ -260,7 +260,7 @@ define([], function () {
         </div>
     </div>
 <div class="pmd-card-actions col-xs-12" style="text-align:center">
-            <button class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button">View Boarding Pass</button>
+            <button class="btn pmd-btn-flat pmd-ripple-effect btn-primary airlineBoardingViewButton" type="button">View Boarding Pass</button>
         </div>
 </div>`;
                 }
@@ -268,6 +268,296 @@ define([], function () {
         }
         return html;
     }
+
+    //Airline Boarding pass with Bar code
+     // airline Boarding pass
+    methods.airlineBoarding = (data) => {
+        console.log('hai');
+        let html;
+        let cardButtons = "";
+        for (let i in data.payload) {
+            if (data.payload[i].hasOwnProperty("platform")) {
+                for (let j in data.payload[i].payload.facebook.attachment.payload.message.attachment.payload.boarding_pass) {
+                    debugger;
+
+                    let params = data.payload[i].payload.facebook.attachment.payload.message.attachment.payload.boarding_pass[j];
+                    let termialLabel = params.auxiliary_fields[0].label;
+                    let termialValue = params.auxiliary_fields[0].value;
+                    let gateLabel = params.secondary_fields[1].label;
+                    let gateValue = params.secondary_fields[1].value;
+                    let passengersName = params.passenger_name;
+                    let passengersSeatLabel = params.secondary_fields[2].label;
+                    let passengersSeatValue = params.secondary_fields[2].value;
+                    let flightNumber = params.flight_info.flight_number;
+                    let boardingValue = params.secondary_fields[0].value;
+                    let departsValue = params.flight_info.flight_schedule.departure_time;
+                    let departCity = params.flight_info.departure_airport.city;
+                    let departCode = params.flight_info.departure_airport.airport_code;
+                    let arrivalCity = params.flight_info.arrival_airport.city;
+                    let arrivalCode = params.flight_info.arrival_airport.airport_code;
+
+                    let arrName = passengersName.replace('/', ' ');
+
+                    let departTime = departsValue.slice('T');
+                    console.log(departTime);
+
+                    html = `<div class="pmd-card pmd-card-inverseblue pmd-z-depth">
+    <!-- Card header -->
+    <div class="container">
+        <div class="row airlinePadding">
+            <div class="col-xs-6">
+                <a href="javascript:void(0);" class="avatar-list-img">
+            <img width="40" height="40" src="https://previews.123rf.com/images/sn333g/sn333g1504/sn333g150400033/39063712-Avi-n-icono-de-vuelo-o-avi-n-logo-despegue-vector-s-mbolo-azul-Foto-de-archivo.jpg">
+        </a>
+            </div>
+            <div class="col-xs-3">
+                <h3 class="pmd-card-title-text">${termialLabel}</h3>
+                <span class="pmd-card-subtitle-text">${termialValue}</span>
+            </div>
+            <div class="col-xs-3">
+                <h3 class="pmd-card-title-text">${gateLabel}</h3>
+                <span class="pmd-card-subtitle-text">${gateValue}</span>
+            </div>
+        </div>
+        <hr style="margin:0px">
+        <div class="row airlinePadding">
+            <div class="col-xs-9">
+                <h3 class="pmd-card-title-text">Passenger</h3>
+            </div>
+            <div class="col-xs-3">
+                <h3 class="pmd-card-title-text">${passengersSeatLabel}</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-9">
+                <span class="pmd-card-subtitle-text">${arrName}</span>
+            </div>
+            <div class="col-xs-3">
+                <span class="pmd-card-subtitle-text">${passengersSeatValue}</span>
+            </div>
+        </div>
+        <hr style="margin:0px">
+        <div class="row airlinePadding ">
+            <div class="col-xs-4">
+                <h3 class="pmd-card-title-text">Flight</h3>
+            </div>
+            <div class="col-xs-4">
+                <h3 class="pmd-card-title-text">Boards</h3>
+            </div>
+            <div class="col-xs-4">
+                <h3 class="pmd-card-title-text">Departs</h3>
+            </div>
+        </div>
+        <div class="row  ">
+            <div class="col-xs-4">
+                <span class="pmd-card-subtitle-text">${flightNumber}</span>
+            </div>
+            <div class="col-xs-4">
+                <span class="pmd-card-subtitle-text">${boardingValue}</span>
+            </div>
+            <div class="col-xs-4">
+                <span class="pmd-card-subtitle-text">${departsValue}</span>
+            </div>
+        </div>
+          <div class="row airlinePadding">
+            <div class="col-xs-9">
+                <h3 class="pmd-card-title-text">${arrivalCity}</h3>
+            </div>
+            <div class="col-xs-3">
+                <h3 class="pmd-card-title-text">${departCity}</h3>
+            </div>
+        </div>
+        <div class="row  ">
+            <div class="col-xs-5">
+                <h2 class="pmd-display2" style="margin:0">${arrivalCode}</h2>
+            </div>
+            <div class="col-xs-4">
+                <i class="material-icons pmd-lg">flight</i>
+            </div>
+            <div class="col-xs-3">
+                <h2 class="pmd-display2" style="margin:0">${departCode}</h2>
+            </div>
+        </div>
+    </div>
+<div class="pmd-card-actions col-xs-12 " style="text-align:center">
+            <button class="btn pmd-btn-flat pmd-ripple-effect btn-primary type="button">Share</button>
+            <button class="btn pmd-btn-flat pmd-ripple-effect btn-primary type="button">Message Airline</button>
+            <button class="btn pmd-btn-flat pmd-ripple-effect btn-primary type="button">Add to Passbook</button>
+        </div>
+</div>`;
+                }
+            }
+        }
+        return html;
+    }
+
+    // airline Checkin
+
+    methods.airlineCheckin = (data) => {
+        let html;
+        let cardButtons = "";
+        for (let i in data.payload) {
+            if (data.payload[i].hasOwnProperty("platform")) {
+                let params = data.payload[i].payload.facebook.attachment.payload.message.attachment.payload;
+                let flightNumber = params.flight_info[0].flight_number;
+                let boardingTime = params.flight_info[0].flight_schedule.boarding_time;
+                let arrivalTime = params.flight_info[0].flight_schedule.arrival_time;
+                let departCity = params.flight_info[0].departure_airport.city;
+                let departCode = params.flight_info[0].departure_airport.airport_code;
+                let arrivalCity = params.flight_info[0].arrival_airport.city;
+                let arrivalCode = params.flight_info[0].arrival_airport.airport_code;
+
+                html = `<div class="pmd-card  pmd-z-depth airlinePadding">
+    <!-- Card header -->
+    <div class="container panel-heading">
+        <div class="row pmd-card-inverseblue airlinePadding">
+            <div class="col-xs-7">
+                <a href="javascript:void(0);" class="avatar-list-img">
+            <img width="40" height="40" src="https://previews.123rf.com/images/sn333g/sn333g1504/sn333g150400033/39063712-Avi-n-icono-de-vuelo-o-avi-n-logo-despegue-vector-s-mbolo-azul-Foto-de-archivo.jpg">
+        </a>
+            </div>
+            
+            <div class="col-xs-5">
+                <h3 class="pmd-card-title-text">Booking Number</h3>
+                <!-- <span class="pmd-card-subtitle-text">D0FQTK</span>-->
+            </div>
+        </div>
+        <hr style="margin:0px">
+        <div class="row airlinePadding ">
+            <div class="col-xs-4">
+                <h3 class="pmd-card-title-text">Flight</h3>
+            </div>
+            <div class="col-xs-4">
+                <h3 class="pmd-card-title-text">Boards</h3>
+            </div>
+            <div class="col-xs-4">
+                <h3 class="pmd-card-title-text">Departs</h3>
+            </div>
+        </div>
+        <div class="row  ">
+            <div class="col-xs-4">
+                <span class="pmd-card-subtitle-text">${flightNumber}</span>
+            </div>
+            <div class="col-xs-4">
+                <span class="pmd-card-subtitle-text">${boardingTime}</span>
+            </div>
+            <div class="col-xs-4">
+                <span class="pmd-card-subtitle-text">${arrivalTime}</span>
+            </div>
+        </div>
+          <div class="row airlinePadding">
+            <div class="col-xs-8">
+                <h3 class="pmd-card-title-text">${departCity}</h3>
+            </div>
+            <div class="col-xs-4">
+                <h3 class="pmd-card-title-text">${arrivalCity}</h3>
+            </div>
+        </div>
+        <div class="row  ">
+            <div class="col-xs-5">
+                <h2 class="pmd-display2" style="margin:0">${departCode}</h2>
+            </div>
+            <div class="col-xs-3">
+                <i class="material-icons pmd-lg">flight_takeoff</i>
+            </div>
+            <div class="col-xs-4">
+                <h2 class="pmd-display2" style="margin:0">${arrivalCode}</h2>
+            </div>
+        </div>
+    </div>
+<div class="pmd-card-actions col-xs-12" style="text-align:center">
+            <button class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button">Checkin</button>
+        </div>
+</div>`;
+            }
+        }
+        return html;
+
+    }
+    // -------------------------------------------------------------------------------
+    // Airline flight update
+    methods.airlineFlightUpdate = (data) => {
+        let html;
+        let cardButtons = "";
+        for (let i in data.payload) {
+            console.log('this is flight update first for loop');
+            if (data.payload[i].hasOwnProperty("platform")) {
+                let params = data.payload[i].payload.facebook.attachment.payload.message.attachment.payload;
+                let flightStatus = params.update_type;
+                let flightNumber = params.update_flight_info.flight_number;
+                let departTime = params.update_flight_info.flight_schedule.departure_time;
+                let arrivalTime = params.update_flight_info.flight_schedule.arrival_time;
+                let departCity = params.update_flight_info.departure_airport.city;
+                let departCode = params.update_flight_info.departure_airport.airport_code;
+                let arrivalCity = params.update_flight_info.arrival_airport.city;
+                let arrivalCode = params.update_flight_info.arrival_airport.airport_code;
+
+                console.log(data.payload[i].payload.facebook.attachment.payload.message.attachment.payload.update_flight_info);
+                html = `<div class="pmd-card  pmd-z-depth airlinePadding">
+    <!-- Card header -->
+    <div class="container panel-heading">
+        <div class="row pmd-card-inverseblue airlinePadding">
+            <div class="col-xs-7">
+                <a href="javascript:void(0);" class="avatar-list-img">
+            <img width="40" height="40" src="https://previews.123rf.com/images/sn333g/sn333g1504/sn333g150400033/39063712-Avi-n-icono-de-vuelo-o-avi-n-logo-despegue-vector-s-mbolo-azul-Foto-de-archivo.jpg">
+        </a>
+            </div>
+            
+            <div class="col-xs-5">
+                <h3 class="pmd-card-title-text">Flight Status</h3>
+                <span class="pmd-card-subtitle-text text-color-red">${flightStatus}</span>
+            </div>
+        </div>
+        <hr style="margin:0px">
+        <div class="row airlinePadding ">
+            <div class="col-xs-4">
+                <h3 class="pmd-card-title-text">Flight</h3>
+            </div>
+            <div class="col-xs-4">
+                <h3 class="pmd-card-title-text">Departs</h3>
+            </div>
+            <div class="col-xs-4">
+                <h3 class="pmd-card-title-text">Arrives</h3>
+            </div>
+        </div>
+        <div class="row  ">
+            <div class="col-xs-4">
+                <span class="pmd-card-subtitle-text">${flightNumber}</span>
+            </div>
+            <div class="col-xs-4">
+                <span class="pmd-card-subtitle-text text-color-red">${departTime}</span>
+            </div>
+            <div class="col-xs-4">
+                <span class="pmd-card-subtitle-text text-color-red">${arrivalTime}</span>
+            </div>
+        </div>
+          <div class="row airlinePadding">
+            <div class="col-xs-8">
+                <h3 class="pmd-card-title-text">${departCity}</h3>
+            </div>
+            <div class="col-xs-4">
+                <h3 class="pmd-card-title-text">${arrivalCity}</h3>
+            </div>
+        </div>
+        <div class="row  ">
+            <div class="col-xs-5">
+                <h2 class="pmd-display2" style="margin:0">${departCode}</h2>
+            </div>
+            <div class="col-xs-3">
+                <i class="material-icons pmd-lg">flight_takeoff</i>
+            </div>
+            <div class="col-xs-4">
+                <h2 class="pmd-display2" style="margin:0">${arrivalCode}</h2>
+            </div>
+        </div>
+    </div>
+</div>`;
+            }
+        }
+        return html;
+
+    }
+    // -------------------------------------------------------------------------------
 
 
 
